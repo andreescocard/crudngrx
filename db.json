@@ -4,7 +4,8 @@
       "id": 1,
       "codigo": "BBAS3",
       "valor": 38.63,
-      "ultima_atualizacao":"28/09/2022"
+      "quantidade": 1,
+      "data":"28/09/2022"
     }
   ]
 }
