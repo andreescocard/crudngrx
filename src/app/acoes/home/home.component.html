@@ -1,1 +1,15 @@
-<p>home works!</p>
+<div class="container mt-2">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col" *ngFor="let acao of acoes$ | async">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ acao.codigo }}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{ acao.valor }}</li>
+            <li class="list-group-item">${{ acao.quantidade }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
