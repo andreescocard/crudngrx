@@ -6,20 +6,6 @@
       "valor": 38.63,
       "quantidade": 1,
       "data": "28/09/2022"
-    },
-    {
-      "id": 2,
-      "codigo": "MXRF11",
-      "valor": "11",
-      "quantidade": 11,
-      "data": "2022-10-17"
-    },
-    {
-      "id": 3,
-      "codigo": "1234",
-      "valor": "1",
-      "quantidade": 1,
-      "data": "2022-10-21"
     }
   ]
 }

@@ -12,6 +12,8 @@ import {
   saveNewAcaoAPISucess,
   updateAcaoAPISucess,
   invokeUpdateAcaoAPI,
+  invokeDeleteAcaoAPI,
+  deleteAcaoAPISuccess,
 } from './acoes.action';
 import { selectAcoes } from './acoes.selector';
  
@@ -75,6 +77,27 @@ export class AcoesEffect {
               })
             );
             return updateAcaoAPISucess({ updateAcao: data });
+          })
+        );
+      })
+    );
+  });
+
+  deleteBooksAPI$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(invokeDeleteAcaoAPI),
+      switchMap((actions) => {
+        this.appStore.dispatch(
+          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
+        );
+        return this.acoesService.delete(actions.id).pipe(
+          map(() => {
+            this.appStore.dispatch(
+              setAPIStatus({
+                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
+              })
+            );
+            return deleteAcaoAPISuccess({ id: actions.id });
           })
         );
       })

@@ -1,7 +1,12 @@
 //Reducer is a pure function, that gets invoked by the actions and then generates a new state in the store based on the action. 
 import { createReducer, on } from '@ngrx/store';
 import { Acoes } from './acoes';
-import { acoesFetchAPISuccess, saveNewAcaoAPISucess, updateAcaoAPISucess } from './acoes.action';
+import { 
+  acoesFetchAPISuccess, 
+  saveNewAcaoAPISucess, 
+  updateAcaoAPISucess,
+  deleteAcaoAPISuccess
+} from './acoes.action';
  
 export const initialState: ReadonlyArray<Acoes> = [];
  
@@ -18,6 +23,10 @@ export const acoesReducer = createReducer(
   on(updateAcaoAPISucess, (state, { updateAcao }) => {
     let newState = state.filter((_) => _.id != updateAcao.id);
     newState.unshift(updateAcao);
+    return newState;
+  }),
+  on(deleteAcaoAPISuccess, (state, { id }) => {
+    let newState =state.filter((_) => _.id != id);
     return newState;
   })
 );

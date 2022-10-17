@@ -31,3 +31,13 @@ export const updateAcaoAPISucess = createAction(
   '[Acoes API] update  acao api success',
   props<{ updateAcao: Acoes }>()
 );
+
+export const invokeDeleteAcaoAPI = createAction(
+  '[Acoes API] Inovke delete acao api',
+  props<{id:number}>()
+);
+ 
+export const deleteAcaoAPISuccess = createAction(
+  '[Acoes API] deleted acao api success',
+  props<{id:number}>()
+);
