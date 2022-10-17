@@ -11,3 +11,13 @@ export const acoesFetchAPISuccess = createAction(
   '[Acoes API] Fetch API Success',
   props<{ allAcoes: Acoes[] }>()
 );
+
+export const invokeSaveNewAcaoAPI = createAction(
+  '[Acoes API] Inovke save new acao api',
+  props<{ newAcao: Acoes }>()
+);
+ 
+export const saveNewAcaoAPISucess = createAction(
+  '[Acoes API] save new acao api success',
+  props<{ newAcao: Acoes }>()
+);

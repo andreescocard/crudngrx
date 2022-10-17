@@ -1,0 +1,40 @@
+<div class="container">
+    <legend>Adicionar uma nova ação</legend>
+    <div class="mb-3">
+      <label for="txtCodigo" class="form-label">Código da ação</label>
+      <input
+        type="text"
+        [(ngModel)]="acaoForm.codigo"
+        class="form-control"
+        id="txtCodigo"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="txtValor" class="form-label">Valor</label>
+      <input
+        type="text"
+        [(ngModel)]="acaoForm.valor"
+        class="form-control"
+        id="txtValor"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="txtQuantidade" class="form-label">Quantidade</label>
+      <input
+        type="number"
+        [(ngModel)]="acaoForm.quantidade"
+        class="form-control"
+        id="txtQuantidade"
+      />
+    </div>
+    <div class="mb-3">
+        <label for="txtData" class="form-label">Data</label>
+        <input
+          type="date"
+          [(ngModel)]="acaoForm.data"
+          class="form-control"
+          id="txtData"
+        />
+      </div>
+    <button type="button" class="btn btn-dark" (click)="save()">Salvar</button>
+  </div>

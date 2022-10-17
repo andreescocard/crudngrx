@@ -10,4 +10,7 @@ export class AcoesService {
   get() {
     return this.http.get<Acoes[]>('http://localhost:3000/acoes');
   }
+  create(payload: Acoes) {
+    return this.http.post<Acoes>('http://localhost:3000/acoes', payload);
+  }
 }

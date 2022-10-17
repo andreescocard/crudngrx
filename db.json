@@ -5,7 +5,21 @@
       "codigo": "BBAS3",
       "valor": 38.63,
       "quantidade": 1,
-      "data":"28/09/2022"
+      "data": "28/09/2022"
+    },
+    {
+      "id": 2,
+      "codigo": "MXRF11",
+      "valor": "10",
+      "quantidade": 1,
+      "data": "2022-10-17"
+    },
+    {
+      "id": 3,
+      "codigo": "123",
+      "valor": "1",
+      "quantidade": 1,
+      "data": "2022-10-21"
     }
   ]
 }

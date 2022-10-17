@@ -7,12 +7,18 @@ import { StoreModule } from '@ngrx/store';
 import { acoesReducer } from './colecao/acoes.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AcoesEffect } from './colecao/acoes.effect';
+import { AddComponent } from './add/add.component';
+import { FormsModule } from '@angular/forms';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    AddComponent,
+    EditComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
     AcoesRoutingModule,
     StoreModule.forFeature('myacoes', acoesReducer),
