@@ -13,4 +13,10 @@ export class AcoesService {
   create(payload: Acoes) {
     return this.http.post<Acoes>('http://localhost:3000/acoes', payload);
   }
+  update(payload: Acoes) {
+    return this.http.put<Acoes>(
+      `http://localhost:3000/acoes/${payload.id}`,
+      payload
+    );
+  }
 }

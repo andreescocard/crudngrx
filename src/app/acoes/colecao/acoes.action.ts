@@ -21,3 +21,13 @@ export const saveNewAcaoAPISucess = createAction(
   '[Acoes API] save new acao api success',
   props<{ newAcao: Acoes }>()
 );
+
+export const invokeUpdateAcaoAPI = createAction(
+  '[Acoes API] Invoke update acao api',
+  props<{ updateAcao: Acoes }>()
+);
+ 
+export const updateAcaoAPISucess = createAction(
+  '[Acoes API] update  acao api success',
+  props<{ updateAcao: Acoes }>()
+);

@@ -10,6 +10,8 @@ import {
   invokeAcoesAPI,
   invokeSaveNewAcaoAPI,
   saveNewAcaoAPISucess,
+  updateAcaoAPISucess,
+  invokeUpdateAcaoAPI,
 } from './acoes.action';
 import { selectAcoes } from './acoes.selector';
  
@@ -57,9 +59,26 @@ export class AcoesEffect {
       })
     );
   });
+
+  updateAcaoAPI$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(invokeUpdateAcaoAPI),
+      switchMap((action) => {
+        this.appStore.dispatch(
+          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
+        );
+        return this.acoesService.update(action.updateAcao).pipe(
+          map((data) => {
+            this.appStore.dispatch(
+              setAPIStatus({
+                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
+              })
+            );
+            return updateAcaoAPISucess({ updateAcao: data });
+          })
+        );
+      })
+    );
+  });
+
 }
-
-//The 'Effects' are used to invoke the API calls.
-//ng generate class acoes/colecao/acoes.effect
-
-//The 'AcoesEffect' class is just an injectable service. In the next steps, we write actions and trigger effects to invoke the API calls in this service.

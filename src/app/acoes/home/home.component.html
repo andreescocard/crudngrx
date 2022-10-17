@@ -16,6 +16,9 @@
             <li class="list-group-item">R$ {{ acao.valor }}</li>
             <li class="list-group-item">{{ acao.data }}</li>
           </ul>
+          <div class="card-body">
+            <a [routerLink]="['/edit', acao.id]" class="btn btn-dark">Editar ação</a>
+          </div>
         </div>
       </div>
     </div>
