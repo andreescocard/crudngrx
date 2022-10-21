@@ -14,7 +14,7 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item">{{ acao.quantidade }}</li>
             <li class="list-group-item">R$ {{ acao.valor }}</li>
-            <li class="list-group-item">{{ acao.data }}</li>
+            <li class="list-group-item"> {{acao.data | date: 'dd'}}/{{acao.data | date:'MM'}}/{{acao.data | date: 'yyyy'}}</li>
           </ul>
           <div class="card-body">
             <a [routerLink]="['/edit', acao.id]" class="btn btn-dark">Editar ação</a>
