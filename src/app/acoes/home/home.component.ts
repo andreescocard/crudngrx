@@ -3,8 +3,8 @@ import { select, Store } from '@ngrx/store';
 import { setAPIStatus } from 'src/app/shared/colecao/app.action';
 import { selectAppState } from 'src/app/shared/colecao/app.selector';
 import { Appstate } from 'src/app/shared/colecao/appstate';
-import { invokeAcoesAPI, invokeDeleteAcaoAPI } from '../colecao/acoes.action';
-import { selectAcoes } from '../colecao/acoes.selector';
+import { invokeAcoesAPI, invokeDeleteAcaoAPI } from '../store/acoes.action';
+import { selectAcoes } from '../store/acoes.selector';
  
 declare var window: any;
  

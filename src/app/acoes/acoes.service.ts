@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Acoes } from './colecao/acoes';
+import { Acoes } from './store/acoes';
 
 @Injectable({
   providedIn: 'root',

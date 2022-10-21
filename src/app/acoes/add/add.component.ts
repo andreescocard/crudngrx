@@ -4,8 +4,8 @@ import { select, Store } from '@ngrx/store';
 import { setAPIStatus } from 'src/app/shared/colecao/app.action';
 import { selectAppState } from 'src/app/shared/colecao/app.selector';
 import { Appstate } from 'src/app/shared/colecao/appstate';
-import { Acoes } from '../colecao/acoes';
-import { invokeSaveNewAcaoAPI } from '../colecao/acoes.action';
+import { Acoes } from '../store/acoes';
+import { invokeSaveNewAcaoAPI } from '../store/acoes.action';
  
 @Component({
   selector: 'app-add',

@@ -5,9 +5,9 @@ import { switchMap } from 'rxjs';
 import { setAPIStatus } from 'src/app/shared/colecao/app.action';
 import { selectAppState } from 'src/app/shared/colecao/app.selector';
 import { Appstate } from 'src/app/shared/colecao/appstate';
-import { Acoes } from '../colecao/acoes';
-import { invokeUpdateAcaoAPI } from '../colecao/acoes.action';
-import { selectAcaoById } from '../colecao/acoes.selector';
+import { Acoes } from '../store/acoes';
+import { invokeUpdateAcaoAPI } from '../store/acoes.action';
+import { selectAcaoById } from '../store/acoes.selector';
  
 @Component({
   selector: 'app-edit',
