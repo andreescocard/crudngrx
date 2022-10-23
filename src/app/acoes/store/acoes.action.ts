@@ -1,19 +1,21 @@
-//The 'Actions' represents the events raised by the component to communicate either with reducers or effects to update the data to store.
-//ng generate class acoes/colecao/acoes.action
 import { createAction, props } from '@ngrx/store';
 import { Acoes } from './acoes';
  
+export const LOADACOES = '[Acoes API] Invoke Acoes Fetch API';
+export const LOADACOESSUCCESS = '[Acoes API] Fetch API Success';
+export const SAVEACOES = '[Acoes API] Inovke save new acao api';
+
 export const invokeAcoesAPI = createAction(
-  '[Acoes API] Invoke Acoes Fetch API'
+  LOADACOES
 );
  
 export const acoesFetchAPISuccess = createAction(
-  '[Acoes API] Fetch API Success',
+  LOADACOESSUCCESS,
   props<{ allAcoes: Acoes[] }>()
 );
 
 export const invokeSaveNewAcaoAPI = createAction(
-  '[Acoes API] Inovke save new acao api',
+  SAVEACOES,
   props<{ newAcao: Acoes }>()
 );
  

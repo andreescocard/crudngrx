@@ -14,6 +14,7 @@ import {
   invokeUpdateAcaoAPI,
   invokeDeleteAcaoAPI,
   deleteAcaoAPISuccess,
+  LOADACOES,
 } from './acoes.action';
 import { selectAcoes } from './acoes.selector';
  
@@ -28,12 +29,8 @@ export class AcoesEffect {
  
   loadAllAcoes$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(invokeAcoesAPI),
-      withLatestFrom(this.store.pipe(select(selectAcoes))),
-      mergeMap(([, acaoformStore]) => {
-        if (acaoformStore.length > 0) {
-          return EMPTY;
-        }
+      ofType(LOADACOES),
+      mergeMap(() => {
         return this.acoesService
           .get()
           .pipe(map((data) => acoesFetchAPISuccess({ allAcoes: data })));
@@ -41,7 +38,7 @@ export class AcoesEffect {
     )
   );
 
-  saveNewBook$ = createEffect(() => {
+  saveNewAcao$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(invokeSaveNewAcaoAPI),
       switchMap((action) => {
