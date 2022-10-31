@@ -1,4 +1,4 @@
-//Reducer is a pure function, that gets invoked by the actions and then generates a new state in the store based on the action. 
+//State changes are handled by pure functions called reducers that take the current state and the latest action to compute a new state.
 import { createReducer, on } from '@ngrx/store';
 import { Acoes } from './acoes';
 import { 
