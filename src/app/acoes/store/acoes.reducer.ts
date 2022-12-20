@@ -16,7 +16,7 @@ export const acoesReducer = createReducer(
     return allAcoes;
   }),
   on(saveNewAcaoAPISucess, (state, { newAcao }) => {
-    let newState = [...state];
+    let newState = [...state]; //spread operator, all elements from array
     newState.unshift(newAcao);
     return newState;
   }),

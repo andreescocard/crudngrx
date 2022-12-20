@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { setAPIStatus } from 'src/app/shared/colecao/app.action';
-import { selectAppState } from 'src/app/shared/colecao/app.selector';
-import { Appstate } from 'src/app/shared/colecao/appstate';
+import { setAPIStatus } from 'src/app/shared/store/app.action';
+import { selectAppState } from 'src/app/shared/store/app.selector';
+import { Appstate } from 'src/app/shared/store/appstate';
 import { Acoes } from '../store/acoes';
 import { invokeSaveNewAcaoAPI } from '../store/acoes.action';
  

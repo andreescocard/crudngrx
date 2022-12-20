@@ -8,8 +8,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { EMPTY, map, mergeMap, switchMap, withLatestFrom, catchError } from 'rxjs';
-import { setAPIStatus } from 'src/app/shared/colecao/app.action';
-import { Appstate } from 'src/app/shared/colecao/appstate';
+import { setAPIStatus } from 'src/app/shared/store/app.action';
+import { Appstate } from 'src/app/shared/store/appstate';
 import { AcoesService } from '../acoes.service';
 import { of } from 'rxjs';
 import {

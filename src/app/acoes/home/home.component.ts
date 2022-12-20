@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { setAPIStatus } from 'src/app/shared/colecao/app.action';
-import { selectAppState } from 'src/app/shared/colecao/app.selector';
-import { Appstate } from 'src/app/shared/colecao/appstate';
+import { setAPIStatus } from 'src/app/shared/store/app.action';
+import { selectAppState } from 'src/app/shared/store/app.selector';
+import { Appstate } from 'src/app/shared/store/appstate';
 import { invokeAcoesAPI, invokeDeleteAcaoAPI } from '../store/acoes.action';
 import { selectAcoes } from '../store/acoes.selector';
  
