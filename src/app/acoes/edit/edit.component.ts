@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs';
 import { setAPIStatus } from 'src/app/shared/colecao/app.action';
 import { selectAppState } from 'src/app/shared/colecao/app.selector';
 import { Appstate } from 'src/app/shared/colecao/appstate';
-import { Acoes } from '../store/acoes';
+import { Acoes } from '../store/acoes.model';
 import { invokeUpdateAcaoAPI } from '../store/acoes.action';
 import { selectAcaoById } from '../store/acoes.selector';
  

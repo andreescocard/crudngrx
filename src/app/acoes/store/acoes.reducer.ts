@@ -1,6 +1,6 @@
 //State changes are handled by pure functions called reducers that take the current state and the latest action to compute a new state.
 import { createReducer, on } from '@ngrx/store';
-import { Acoes } from './acoes';
+import { Acoes } from './acoes.model';
 import { 
   acoesFetchAPISuccess, 
   saveNewAcaoAPISucess, 

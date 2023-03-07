@@ -1,6 +1,6 @@
 //Actions describe unique events that are dispatched from components and services.
 import { createAction, props } from '@ngrx/store';
-import { Acoes } from './acoes';
+import { Acoes } from './acoes.model';
  
 export const LOADACOES = '[Acoes API] Invoke Acoes Fetch API';
 export const LOADACOESSUCCESS = '[Acoes API] Fetch API Success';
