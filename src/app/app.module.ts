@@ -20,8 +20,7 @@ import { appReducer } from './shared/colecao/app.reducer';
     HttpClientModule,
     StoreModule.forRoot({ appState: appReducer }),
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    HttpClientModule
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
