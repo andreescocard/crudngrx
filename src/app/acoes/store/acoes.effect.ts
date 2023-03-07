@@ -6,15 +6,14 @@ Effects perform tasks, which are synchronous or asynchronous and return a new ac
  */
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { select, Store } from '@ngrx/store';
-import { EMPTY, map, mergeMap, switchMap, withLatestFrom, catchError } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { map, mergeMap, switchMap, withLatestFrom, catchError, tap, concatMap } from 'rxjs';
 import { setAPIStatus } from 'src/app/shared/store/app.action';
 import { Appstate } from 'src/app/shared/store/appstate';
 import { AcoesService } from '../acoes.service';
 import { of } from 'rxjs';
 import {
   acoesFetchAPISuccess,
-  invokeAcoesAPI,
   invokeSaveNewAcaoAPI,
   saveNewAcaoAPISucess,
   updateAcaoAPISucess,
@@ -24,35 +23,34 @@ import {
   LOADACOES,
   LOADACOESERROR,
 } from './acoes.action';
-import { selectAcoes } from './acoes.selector';
  
 @Injectable()
 export class AcoesEffect {
   constructor(
     private actions$: Actions,
     private acoesService: AcoesService,
-    private store: Store,
     private appStore: Store<Appstate>
   ) {}
+  
     /*
     loadAllAcoes$ - effect name listening to actions
     pipe() - call one or more functions that passes the result to next one
     ofType - filter action
-    mergeMap - flattening opperator
+    mergeMap - modifica cada valor observable um por um sem parar
+    concatMap - modifica cada valor observable um por um (esperar a modificação terminar)
+    switchMap - modifica apenas o último valor do observable
+    exhaustMap - modifica apenas o primeiro valor do observable
     map - operator > Apply projection with each value from source.
      */
+
   loadAllAcoes$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(LOADACOES),
-      mergeMap(() => {
-        return this.acoesService
-          .get()
-          .pipe(
-            map((data) => acoesFetchAPISuccess({ allAcoes: data })),
-            catchError(() => of({ type: LOADACOESERROR }))
-          )
-      })
-    )
+    () => this.actions$
+      .pipe(
+        ofType(LOADACOES),
+        concatMap(action => 
+          this.acoesService.get()),
+          map(data => acoesFetchAPISuccess({allAcoes: data}))
+      )
   );
 
    /*
@@ -65,10 +63,8 @@ export class AcoesEffect {
     return this.actions$.pipe(
       ofType(invokeSaveNewAcaoAPI),
       switchMap((action) => {
-        this.appStore.dispatch(
-          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
-        );
-        return this.acoesService.create(action.newAcao).pipe(
+        return this.acoesService.create(action.newAcao)
+        .pipe(
           map((data) => {
             this.appStore.dispatch(
               setAPIStatus({
@@ -86,9 +82,6 @@ export class AcoesEffect {
     return this.actions$.pipe(
       ofType(invokeUpdateAcaoAPI),
       switchMap((action) => {
-        this.appStore.dispatch(
-          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
-        );
         return this.acoesService.update(action.updateAcao).pipe(
           map((data) => {
             this.appStore.dispatch(
