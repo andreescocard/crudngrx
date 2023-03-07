@@ -32,13 +32,6 @@ export class AddComponent implements OnInit {
   save() {
     this.store.dispatch(invokeSaveNewAcaoAPI({ newAcao: this.acaoForm }));
     let apiStatus$ = this.appStore.pipe(select(selectAppState));
-    apiStatus$.subscribe((apState) => {
-      if (apState.apiStatus == 'success') {
-        this.appStore.dispatch(
-          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
-        );
-         this.router.navigate(['/']);
-      }
-    });
+
   }
 }
