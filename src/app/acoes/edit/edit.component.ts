@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { setAPIStatus } from 'src/app/shared/store/app.action';
 import { selectAppState } from 'src/app/shared/store/app.selector';
 import { Appstate } from 'src/app/shared/store/appstate';
@@ -15,13 +15,14 @@ import { selectAcaoById } from '../store/acoes.selector';
   styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private store: Store,
     private appStore: Store<Appstate>
   ) {}
- 
+    
   acaoForm: Acoes = {
     id: 0,
     codigo: '',
@@ -33,13 +34,17 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     let fetchData$ = this.route.paramMap.pipe(
       switchMap((params) => {
-        var id = Number(params.get('id'));
-        return this.store.pipe(select(selectAcaoById(id)));
+        const id = Number(params.get('id'));
+        const returnData = this.store.pipe(select(selectAcaoById(id)));
+        return returnData
       })
     );
+   
     fetchData$.subscribe((data) => {
-      if (data) {
-        this.acaoForm = { ...data };
+      
+      if (data[0]) {
+        const dataReturn = data[0];
+        this.acaoForm =  dataReturn ;
       }
       else{
         this.router.navigate(['/']);
