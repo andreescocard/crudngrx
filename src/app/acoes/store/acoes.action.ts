@@ -5,7 +5,7 @@ import { Acoes } from './acoes.model';
 export const LOADACOES = '[Acoes API] Invoke Acoes Fetch API';
 export const LOADACOESSUCCESS = '[Acoes API] Fetch API Success';
 export const LOADACOESERROR = '[Acoes API] Error Fetching API';
-export const SAVEACOES = '[Acoes API] Inovke save new acao api';
+export const SAVEACOES = '[Acoes API] Invoke save new acao api';
 export const SAVEACOESSUCCESS = '[Acoes API] save new acao api success';
 export const UPDATEACOES = '[Acoes API] Invoke update acao api';
 export const UPDATEACOESSUCCESS = '[Acoes API] update  acao api success';

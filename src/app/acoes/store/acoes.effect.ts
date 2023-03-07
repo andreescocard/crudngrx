@@ -23,13 +23,15 @@ import {
   LOADACOES,
   LOADACOESERROR,
 } from './acoes.action';
+import { Router } from '@angular/router';
  
 @Injectable()
 export class AcoesEffect {
   constructor(
     private actions$: Actions,
     private acoesService: AcoesService,
-    private appStore: Store<Appstate>
+    private appStore: Store<Appstate>, 
+    private router: Router
   ) {}
   
     /*
@@ -53,30 +55,19 @@ export class AcoesEffect {
       )
   );
 
-   /*
-    switchMap - flattening opperator with cancelling effect (avoid memory leaks)
-    setAPIStatus - call app action
-  this.acoesService.create - call service with API call to create acoes
-     */
 
-  saveNewAcao$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(invokeSaveNewAcaoAPI),
-      switchMap((action) => {
-        return this.acoesService.create(action.newAcao)
-        .pipe(
-          map((data) => {
-            this.appStore.dispatch(
-              setAPIStatus({
-                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
-              })
-            );
-            return saveNewAcaoAPISucess({ newAcao: data });
-          })
-        );
-      })
-    );
-  });
+  saveNewAcao$ = createEffect(
+    () => this.actions$
+      .pipe(
+          ofType(invokeSaveNewAcaoAPI),
+          concatMap(action => this.acoesService.create(
+            action.newAcao
+          )),
+          tap((data) => this.router.navigateByUrl("/"))
+      ),
+      {dispatch: false}
+  );
+
 
   updateAcaoAPI$ = createEffect(() => {
     return this.actions$.pipe(
