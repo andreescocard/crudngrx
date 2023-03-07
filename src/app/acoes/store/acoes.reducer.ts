@@ -2,10 +2,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Acoes } from './acoes.model';
 import { 
-  acoesFetchAPISuccess, 
-  saveNewAcaoAPISucess, 
-  updateAcaoAPISucess,
-  deleteAcaoAPISuccess
+  acoesFetchAPISuccess, invokeDeleteAcaoAPI, invokeSaveNewAcaoAPI, invokeUpdateAcaoAPI, 
 } from './acoes.action';
  
 export const initialState: ReadonlyArray<Acoes> = [];
@@ -15,17 +12,17 @@ export const acoesReducer = createReducer(
   on(acoesFetchAPISuccess, (state, { allAcoes }) => {
     return allAcoes;
   }),
-  on(saveNewAcaoAPISucess, (state, { newAcao }) => {
+  on(invokeSaveNewAcaoAPI, (state, { newAcao }) => {
     let newState = [...state]; //spread operator, all elements from array
     newState.unshift(newAcao);
     return newState;
   }),
-  on(updateAcaoAPISucess, (state, { updateAcao }) => {
+  on(invokeUpdateAcaoAPI, (state, { updateAcao }) => {
     let newState = state.filter((_) => _.id != updateAcao.id);
     newState.unshift(updateAcao);
     return newState;
   }),
-  on(deleteAcaoAPISuccess, (state, { id }) => {
+  on(invokeDeleteAcaoAPI, (state, { id }) => {
     let newState =state.filter((_) => _.id != id);
     return newState;
   })

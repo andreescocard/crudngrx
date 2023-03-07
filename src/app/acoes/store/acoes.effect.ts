@@ -15,13 +15,9 @@ import { of } from 'rxjs';
 import {
   acoesFetchAPISuccess,
   invokeSaveNewAcaoAPI,
-  saveNewAcaoAPISucess,
-  updateAcaoAPISucess,
   invokeUpdateAcaoAPI,
   invokeDeleteAcaoAPI,
-  deleteAcaoAPISuccess,
   LOADACOES,
-  LOADACOESERROR,
 } from './acoes.action';
 import { Router } from '@angular/router';
  
@@ -42,7 +38,9 @@ export class AcoesEffect {
     concatMap - modifica cada valor observable um por um (esperar a modificação terminar)
     switchMap - modifica apenas o último valor do observable
     exhaustMap - modifica apenas o primeiro valor do observable
+    tap - aplica uma ação ou side effect transparente (sem retorno)
     map - operator > Apply projection with each value from source.
+    “{dispatch: false}” - to indicate it does not need to dispatch anything after the side effect completes.
      */
 
   loadAllAcoes$ = createEffect(() =>
@@ -63,49 +61,38 @@ export class AcoesEffect {
           concatMap(action => this.acoesService.create(
             action.newAcao
           )),
-          tap((data) => this.router.navigateByUrl("/"))
+          tap(() => this.router.navigateByUrl("/"))
       ),
       {dispatch: false}
   );
 
 
-  updateAcaoAPI$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(invokeUpdateAcaoAPI),
-      switchMap((action) => {
-        return this.acoesService.update(action.updateAcao).pipe(
-          map((data) => {
-            this.appStore.dispatch(
-              setAPIStatus({
-                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
-              })
-            );
-            return updateAcaoAPISucess({ updateAcao: data });
-          })
-        );
-      })
-    );
-  });
+  updateAcaoAPI$ = createEffect(
+    () => this.actions$
+      .pipe(
+          ofType(invokeUpdateAcaoAPI),
+          switchMap(action => this.acoesService.update(
+            action.updateAcao
+          )),
+          tap(() => this.router.navigateByUrl("/"))
+      ),
+      {dispatch: false}
+  );
 
-  deleteBooksAPI$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(invokeDeleteAcaoAPI),
-      switchMap((actions) => {
-        this.appStore.dispatch(
-          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
-        );
-        return this.acoesService.delete(actions.id).pipe(
-          map(() => {
-            this.appStore.dispatch(
-              setAPIStatus({
-                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
-              })
-            );
-            return deleteAcaoAPISuccess({ id: actions.id });
+
+  deleteBooksAPI$ = createEffect(
+    () => this.actions$
+      .pipe(
+          ofType(invokeDeleteAcaoAPI),
+          concatMap(action => this.acoesService.delete(
+            action.id
+          )),
+          tap(() => {
+            document.getElementById("closeModalButton")!.click();
           })
-        );
-      })
-    );
-  });
+      ),
+      {dispatch: false}
+  );
+         
 
 }
