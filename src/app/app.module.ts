@@ -8,7 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {  HttpClientModule } from '@angular/common/http';
-import { appReducer } from './shared/colecao/app.reducer';
+import { appReducer } from './shared/store/app.reducer';
 
 @NgModule({
   declarations: [

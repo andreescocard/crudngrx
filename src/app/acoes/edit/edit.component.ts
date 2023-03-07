@@ -2,10 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { switchMap } from 'rxjs';
+<<<<<<< HEAD
 import { setAPIStatus } from 'src/app/shared/colecao/app.action';
 import { selectAppState } from 'src/app/shared/colecao/app.selector';
 import { Appstate } from 'src/app/shared/colecao/appstate';
 import { Acoes } from '../store/acoes.model';
+=======
+import { setAPIStatus } from 'src/app/shared/store/app.action';
+import { selectAppState } from 'src/app/shared/store/app.selector';
+import { Appstate } from 'src/app/shared/store/appstate';
+import { Acoes } from '../store/acoes';
+>>>>>>> a58171c03e5adf274ca3d227b4357e44da0b6138
 import { invokeUpdateAcaoAPI } from '../store/acoes.action';
 import { selectAcaoById } from '../store/acoes.selector';
  
