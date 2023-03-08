@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { setAPIStatus } from 'src/app/shared/store/app.action';
-import { selectAppState } from 'src/app/shared/store/app.selector';
-import { Appstate } from 'src/app/shared/store/appstate';
 import { invokeAcoesAPI, invokeDeleteAcaoAPI } from '../store/acoes.action';
 import { selectAcoes } from '../store/acoes.selector';
  
@@ -14,7 +11,7 @@ declare var window: any;
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private store: Store, private appStore: Store<Appstate>) {}
+  constructor(private store: Store, private appStore: Store) {}
  
   acoes$ = this.store.pipe(select(selectAcoes));
  

@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, switchMap } from 'rxjs';
-import { setAPIStatus } from 'src/app/shared/store/app.action';
-import { selectAppState } from 'src/app/shared/store/app.selector';
-import { Appstate } from 'src/app/shared/store/appstate';
 import { Acoes } from '../store/acoes.model';
 import { invokeUpdateAcaoAPI } from '../store/acoes.action';
 import { selectAcaoById } from '../store/acoes.selector';
@@ -20,7 +17,7 @@ export class EditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private store: Store,
-    private appStore: Store<Appstate>
+    private appStore: Store
   ) {}
     
   acaoForm: Acoes = {

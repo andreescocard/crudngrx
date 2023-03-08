@@ -7,11 +7,8 @@ Effects perform tasks, which are synchronous or asynchronous and return a new ac
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { map, mergeMap, switchMap, withLatestFrom, catchError, tap, concatMap } from 'rxjs';
-import { setAPIStatus } from 'src/app/shared/store/app.action';
-import { Appstate } from 'src/app/shared/store/appstate';
+import { map, switchMap, tap, concatMap } from 'rxjs';
 import { AcoesService } from '../acoes.service';
-import { of } from 'rxjs';
 import {
   acoesFetchAPISuccess,
   invokeSaveNewAcaoAPI,
@@ -26,7 +23,7 @@ export class AcoesEffect {
   constructor(
     private actions$: Actions,
     private acoesService: AcoesService,
-    private appStore: Store<Appstate>, 
+    private appStore: Store, 
     private router: Router
   ) {}
   

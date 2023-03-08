@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { setAPIStatus } from 'src/app/shared/store/app.action';
-import { selectAppState } from 'src/app/shared/store/app.selector';
-import { Appstate } from 'src/app/shared/store/appstate';
 import { Acoes } from '../store/acoes.model';
 import { invokeSaveNewAcaoAPI } from '../store/acoes.action';
  
@@ -15,7 +12,7 @@ import { invokeSaveNewAcaoAPI } from '../store/acoes.action';
 export class AddComponent implements OnInit {
   constructor(
     private store: Store,
-    private appStore: Store<Appstate>,
+    private appStore: Store,
     private router: Router
   ) {}
  
@@ -31,7 +28,6 @@ export class AddComponent implements OnInit {
  
   save() {
     this.store.dispatch(invokeSaveNewAcaoAPI({ newAcao: this.acaoForm }));
-    let apiStatus$ = this.appStore.pipe(select(selectAppState));
 
   }
 }
